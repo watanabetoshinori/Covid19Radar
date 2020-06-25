@@ -1,0 +1,16 @@
+disabled_rules:
+  - multiple_closures_with_trailing_closure # Conflict with the Xcode default style
+
+included: 
+  - Covid19Radar
+
+excluded:
+  - Carthage
+  - Pods
+
+type_name:
+  allowed_symbols: "_" # SwiftUI generate XXX_Previews struct 
+
+identifier_name:
+  excluded:
+    - id
