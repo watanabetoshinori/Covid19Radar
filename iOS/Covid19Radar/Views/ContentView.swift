@@ -90,7 +90,7 @@ struct ContentView: View {
             })
         case 4:
             return AnyView(NavigationView {
-                PrivacyPolicyView()
+                PrivacyPolicy2View()
                     .navigationBarItems(leading: self.openButton)
             })
         case 5:

@@ -18,8 +18,6 @@ struct SettingsView: View {
         GeometryReader { proxy in
             ScrollView {
                 VStack(alignment: .leading) {
-                    self.exposureRow
-                    self.notificationRow
                     self.versionRow
                     self.licenseRow
                     self.resetRow
@@ -33,42 +31,6 @@ struct SettingsView: View {
     }
 
     // MARK: - Rows
-
-    var exposureRow: some View {
-        Group {
-            Toggle(isOn: self.$viewModel.isExposureEnabled) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("SettingsPageLabel1")
-                        .defaultLabel()
-
-                    Text("SettingsPageDescription1")
-                        .foregroundColor(.secondary)
-                        .defaultSubLabel()
-                }
-            }
-            .padding(.horizontal)
-
-            Divider()
-        }
-    }
-
-    var notificationRow: some View {
-        Group {
-            Toggle(isOn: self.$viewModel.isNotificationEnabled) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("SettingsPageLabel2")
-                        .defaultLabel()
-
-                    Text("SettingsPageDescription2")
-                        .foregroundColor(.secondary)
-                        .defaultSubLabel()
-                }
-            }
-            .padding(.horizontal)
-
-            Divider()
-        }
-    }
 
     var versionRow: some View {
         Group {

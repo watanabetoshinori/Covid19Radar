@@ -15,10 +15,10 @@ struct Help4View: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 32) {
-                HStack(alignment: .center) {
-                    Image("HelpPage50")
-                }
-                .padding(.top, 10)
+//                HStack(alignment: .center) {
+//                    Image("HelpPage50")
+//                }
+//                .padding(.top, 10)
 
                 Text("HelpPage4Description")
                     .defaultLabel()

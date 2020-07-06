@@ -51,6 +51,7 @@ struct NotifyOtherView: View {
                     Spacer()
 
                     LargeActionButton(label: "NotifyOtherPageButton", action: self.viewModel.submit)
+                        .disabled(!self.viewModel.isEnabled)
 
                     NavigationLink(destination: ThankYouNotifyOtherView(isParentPresented: self.$isParentPresented),
                                    isActive: self.$isPresented) {

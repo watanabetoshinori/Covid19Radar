@@ -1,5 +1,5 @@
 //
-//  Tutorial6View.swift
+//  Tutorial7View.swift
 //  Covid19Radar
 //
 //  Created by Watanabe Toshinori on 2020/06/25.
@@ -10,8 +10,6 @@ import SwiftUI
 
 struct Tutorial6View: View {
 
-    @ObservedObject var viewModel = Tutorial6ViewModel()
-
     @State var isPresented = false
 
     // MARK: - Body
@@ -20,22 +18,31 @@ struct Tutorial6View: View {
         GeometryReader { proxy in
             ScrollView {
                 VStack(spacing: 16) {
-                    Text("TutorialPage5Description1")
-                        .defaultTitle()
-
                     HStack(alignment: .center) {
-                        Image("TutorialPage50")
+                        Image("TutorialPage60")
                     }
-                    .padding(.vertical, 24)
 
-                    Text("TutorialPage5Description2")
-                        .defaultLabel()
+                    Text("AppName")
+                        .defaultTitle()
+                        .padding(.vertical)
+
+                    Text("TutorialPage6Label1")
+                        .defaultTitle()
+                        .padding(.vertical)
 
                     Spacer()
 
-                    LargeActionButton(label: "TutorialPage5Description3", action: self.viewModel.enable)
+                    LargeActionButton(label: "TutorialPage6ButtonText1") {
+                        withAnimation {
+                            LocalStore.shared.isOnboarded = true
+                        }
+                    }
 
-                    DefferActionButton(label: "TutorialPage5Description4", action: self.viewModel.disable)
+                    LargeActionButton(label: "TutorialPage6ButtonText2") {
+                        withAnimation {
+                            self.isPresented = true
+                        }
+                    }
                 }
                 .padding(.vertical)
                 .padding(.horizontal, 24)
@@ -45,12 +52,24 @@ struct Tutorial6View: View {
         .background(Color(UIColor.systemBackground))
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarHidden(true)
-        .onReceive(self.viewModel.$isPresented, perform: { (newValue) in
-            withAnimation {
-                self.isPresented = newValue
-            }
-        })
-        .modal(isPresented: $isPresented, destination: Tutorial7View())
+        .modal(isPresented: $isPresented, destination: self.helpView)
+    }
+
+    // MARK: - Help View
+
+    private var helpView: some View {
+        NavigationView {
+            HelpMenuView()
+                .navigationBarItems(leading:
+                    Button(action: {
+                        withAnimation {
+                            self.isPresented = false
+                        }
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .padding(.trailing, 30)
+                    })
+        }
     }
 
 }

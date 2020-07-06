@@ -1,5 +1,5 @@
 //
-//  Tutorial6ViewModel.swift
+//  PrivacyPolicyViewModel.swift
 //  Covid19Radar
 //
 //  Created by Watanabe Toshinori on 2020/06/25.
@@ -8,17 +8,11 @@
 
 import Foundation
 
-class Tutorial6ViewModel: ObservableObject {
+class PrivacyPolicyViewModel: ObservableObject {
 
     @Published var isPresented = false
 
-    func enable() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.isPresented = true
-        }
-    }
-
-    func disable() {
+    func agree() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             self.isPresented = true
         }

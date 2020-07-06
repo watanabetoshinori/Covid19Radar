@@ -15,41 +15,45 @@ struct Tutorial1View: View {
     // MARK: - Body
 
     var body: some View {
-        GeometryReader { proxy in
-            ScrollView {
-                VStack(spacing: 32) {
-                    Text("TutorialPage1Title2")
-                        .defaultTitle()
+        VStack {
+            Text("TutorialPage1Title2")
+                .defaultTitle()
+                .padding(.top)
+                .padding(.horizontal, 24)
 
-                    HStack {
-                        Image("TutorialPage10")
-                        Text("TutorialPage1Description1")
-                            .defaultLabel()
-                    }
+            GeometryReader { proxy in
+                ScrollView {
+                    VStack(spacing: 32) {
+                        HStack {
+                            Image("TutorialPage10")
+                            Text("TutorialPage1Description1")
+                                .defaultLabel()
+                        }
 
-                    HStack {
-                        Text("TutorialPage1Description2")
-                            .defaultLabel()
-                        Image("TutorialPage11")
-                    }
+                        HStack {
+                            Text("TutorialPage1Description2")
+                                .defaultLabel()
+                            Image("TutorialPage11")
+                        }
 
-                    HStack {
-                        Image("TutorialPage12")
-                        Text("TutorialPage1Description3")
-                            .defaultLabel()
-                    }
+                        HStack {
+                            Image("TutorialPage12")
+                            Text("TutorialPage1Description3")
+                                .defaultLabel()
+                        }
 
-                    Spacer()
+                        Spacer()
 
-                    LargeActionButton(label: "TutorialPage1Button") {
-                        withAnimation {
-                            self.isPresented = true
+                        LargeActionButton(label: "TutorialPage1Button") {
+                            withAnimation {
+                                self.isPresented = true
+                            }
                         }
                     }
+                    .padding(.vertical)
+                    .padding(.horizontal, 24)
+                    .frame(minHeight: proxy.size.height)
                 }
-                .padding(.vertical)
-                .padding(.horizontal, 24)
-                .frame(minHeight: proxy.size.height)
             }
         }
         .background(Color(UIColor.systemBackground))

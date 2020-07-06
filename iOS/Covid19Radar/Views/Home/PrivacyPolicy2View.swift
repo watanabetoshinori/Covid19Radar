@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct PrivacyPolicyView: View {
+struct PrivacyPolicy2View: View {
 
     let url = NSLocalizedString("UrlPrivacyPolicy", comment: "")
 
@@ -26,8 +26,8 @@ struct PrivacyPolicyView: View {
 
 }
 
-struct PrivacyPolicyView_Previews: PreviewProvider {
+struct PrivacyPolicyView2_Previews: PreviewProvider {
     static var previews: some View {
-        PrivacyPolicyView()
+        PrivacyPolicy2View()
     }
 }

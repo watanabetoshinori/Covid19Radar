@@ -1,5 +1,5 @@
 //
-//  Tutorial3View.swift
+//  Tutorial4View.swift
 //  Covid19Radar
 //
 //  Created by Watanabe Toshinori on 2020/06/25.
@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-struct Tutorial3View: View {
+struct PrivacyPolicyView: View {
 
-    let url = NSLocalizedString("UrlTermOfUse", comment: "")
+    let url = NSLocalizedString("UrlPrivacyPolicy", comment: "")
 
     @ObservedObject private var webViewModel = WebViewModel()
 
-    @ObservedObject var viewModel = Tutorial3ViewModel()
+    @ObservedObject var viewModel = PrivacyPolicyViewModel()
 
     @State var isPresented = false
 
@@ -23,7 +23,7 @@ struct Tutorial3View: View {
     var body: some View {
         GeometryReader { proxy in
             VStack(spacing: 16) {
-                Text("TutorialPage3Title")
+                Text("PrivacyPolicyPageTitle")
                     .defaultTitle()
 
                 VStack {
@@ -35,7 +35,7 @@ struct Tutorial3View: View {
 
                 Spacer()
 
-                LargeActionButton(label: "TutorialPage3ButtonText", action: self.viewModel.agree)
+                LargeActionButton(label: "ButtonAgree", action: self.viewModel.agree)
             }
             .padding(.vertical)
             .padding(.horizontal, 24)
@@ -49,13 +49,13 @@ struct Tutorial3View: View {
                 self.isPresented = newValue
             }
         })
-        .modal(isPresented: self.$isPresented, destination: PrivacyPolicyView())
+        .modal(isPresented: $isPresented, destination: Tutorial4View())
     }
 
 }
 
-struct Tutorial3View_Previews: PreviewProvider {
+struct PrivacyPolicyView_Previews: PreviewProvider {
     static var previews: some View {
-        Tutorial3View()
+        PrivacyPolicyView()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Tutorial4View.swift
+//  Tutorial5View.swift
 //  Covid19Radar
 //
 //  Created by Watanabe Toshinori on 2020/06/25.
@@ -10,10 +10,6 @@ import SwiftUI
 
 struct Tutorial4View: View {
 
-    let url = NSLocalizedString("UrlPrivacyPolicy", comment: "")
-
-    @ObservedObject private var webViewModel = WebViewModel()
-
     @ObservedObject var viewModel = Tutorial4ViewModel()
 
     @State var isPresented = false
@@ -22,24 +18,29 @@ struct Tutorial4View: View {
 
     var body: some View {
         GeometryReader { proxy in
-            VStack(spacing: 16) {
-                Text("PrivacyPolicyPageTitle")
-                    .defaultTitle()
+            ScrollView {
+                VStack(spacing: 16) {
+                    Text("TutorialPage4Title2")
+                        .defaultTitle()
 
-                VStack {
-                    ProgressView(progress: Float(self.webViewModel.webView.estimatedProgress))
-                        .opacity(Float(self.webViewModel.webView.estimatedProgress) == 1 ? 0 : 1)
+                    HStack(alignment: .center) {
+                        Image("TutorialPage40")
+                    }
+                    .padding(.vertical, 24)
 
-                    WebView(url: self.url, viewModel: self.webViewModel)
+                    Text("TutorialPage4Description")
+                        .defaultLabel()
+
+                    Spacer()
+
+                    LargeActionButton(label: "TutorialPage4Button1", action: self.viewModel.enable)
+
+                    DefferActionButton(label: "TutorialPage4Button2", action: self.viewModel.disable)
                 }
-
-                Spacer()
-
-                LargeActionButton(label: "ButtonAgree", action: self.viewModel.agree)
+                .padding(.vertical)
+                .padding(.horizontal, 24)
+                .frame(minHeight: proxy.size.height)
             }
-            .padding(.vertical)
-            .padding(.horizontal, 24)
-            .frame(minHeight: proxy.size.height)
         }
         .background(Color(UIColor.systemBackground))
         .navigationBarTitle("", displayMode: .inline)
@@ -49,7 +50,7 @@ struct Tutorial4View: View {
                 self.isPresented = newValue
             }
         })
-        .modal(isPresented: $isPresented, destination: Tutorial5View())
+        .modal(isPresented: $isPresented, destination: Tutorial6View())
     }
 
 }

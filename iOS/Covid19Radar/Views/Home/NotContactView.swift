@@ -18,7 +18,6 @@ struct NotContactView: View {
                 VStack(spacing: 32) {
                     Text("NotContactPageLabel1")
                         .defaultTitle()
-                        .padding(.top, 30)
 
                     Text("NotContactPageDescription1")
                         .defaultLabel()

@@ -14,6 +14,10 @@ class NotifyOtherViewModel: ObservableObject {
 
     @Published var diagnosisUID = ""
 
+    var isEnabled: Bool {
+        diagnosisUID.count == AppConstants.maxDiagnosisUidCount
+    }
+
     func submit() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             self.isPresented = true

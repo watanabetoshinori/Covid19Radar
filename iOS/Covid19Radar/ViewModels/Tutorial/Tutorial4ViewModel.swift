@@ -12,7 +12,13 @@ class Tutorial4ViewModel: ObservableObject {
 
     @Published var isPresented = false
 
-    func agree() {
+    func enable() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.isPresented = true
+        }
+    }
+
+    func disable() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             self.isPresented = true
         }
