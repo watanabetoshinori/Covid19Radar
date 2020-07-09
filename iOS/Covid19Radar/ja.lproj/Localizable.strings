@@ -53,7 +53,7 @@
 "HelpPage1Description3Title" = "接触情報の記録";
 "HelpPage1Description3Text" = "このとき、接触した相手の接触符号の記録をアプリに行います。どちらかの利用者が陽性の登録を行うまでは接触の情報は利用されません。接触の履歴は14日後に消去されます。 ※接触符号は定期的に変わります。";
 "HelpPage4ButtonText" = "アプリの設定へ";
-"HelpPage4Description" = "アプリの設定から、Bluetoothの有効／無効、通知の有効／無効、アプリの使用中止と履歴の削除を行うことができます。";
+"HelpPage4Description" = "アプリの設定から、アプリの使用中止と利用者情報の削除を行うことができます。";
 "HelpPage2Description1" = "接触した人の中に新型コロナウイルスの陽性登録された人がいた場合、スマートフォンにプッシュ通知が届きます。";
 "HelpPage2Description2" = "最近の接触件数の確認へはホーム画面からも移動することができます。";
 "HelpPage2Description3" = "接触があった日付の一覧を確認できます。また適切な連絡先をお知らせします。";
@@ -152,8 +152,8 @@
 "ExposuresPageLabel1" = "以下の日に陽性者との接触が確認されました。";
 "UrlTermOfUse" = "https://www.mhlw.go.jp/stf/seisakunitsuite/japanese_rk_00028.html";
 "UrlContactedForm" = "https://covid19radarjpnprod.z11.web.core.windows.net/ja/index.html";
-"UrlContactedPhone" = "https://covid19radarjpnprod.z11.web.core.windows.net/ja/chatbot4.html";
-"LocalNotificationDescription" = "新型コロナウイルス陽性登録者と接触した可能性があります。詳細はこちら。";
+"UrlContactedPhone" = "https://covid19radarjpnprod.z11.web.core.windows.net/phone.json";
+"LocalNotificationDescription" = "新型コロナウイルス陽性登録者と接触した可能性があります。詳細はこちら";
 "LocalNotificationTitle" = "新型コロナウイルス陽性登録者との接触の可能性";
 "LocalNotificationPermittedDescription" = "通知を無効にしたい場合は、アプリの設定から変更できます";
 "LocalNotificationPermittedTitle" = "通知を有効にしました";

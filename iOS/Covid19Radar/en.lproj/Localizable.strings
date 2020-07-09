@@ -53,7 +53,7 @@
 "HelpPage1Description3Title" = "Recording close contact";
 "HelpPage1Description3Text" = "Phones in close contact exchange their random codes. This information will not be used until either user registers positive test results with this app. The close contact history will be erased after 14 days. Note: The code changes regularly to protect your privacy.";
 "HelpPage4ButtonText" = "Go to app settings";
-"HelpPage4Description" = "From app settings, you can enable/disable Bluetooth and notifications, stop using the app and delete close contact history.";
+"HelpPage4Description" = "From app settings, you can stop using the app and delete user data.";
 "HelpPage2Description1" = "The app will notify you, if you were in close contact with COVID-19 positive user.";
 "HelpPage2Description2" = "You can check the number of your close contacts from the home screen.";
 "HelpPage2Description3" = "You can check the list of close contact dates and receive guidance on what to do if you have symptoms of the disease.";
@@ -152,7 +152,7 @@
 "ExposuresPageLabel1" = "Dates when you were in close contact with COVID-19 positive users.";
 "UrlTermOfUse" = "https://www.mhlw.go.jp/stf/seisakunitsuite/english_rk_00031.html";
 "UrlContactedForm" = "https://covid19radarjpnprod.z11.web.core.windows.net/en/index.html";
-"UrlContactedPhone" = "https://covid19radarjpnprod.z11.web.core.windows.net/en/chatbot4.html";
+"UrlContactedPhone" = "https://covid19radarjpnprod.z11.web.core.windows.net/phone.json";
 "LocalNotificationDescription" = "It is possible you have been in close proximity to a user who tested positive for COVID-19.  Tap for more details.";
 "LocalNotificationTitle" = "Possible COVID-19 Exposure";
 "LocalNotificationPermittedDescription" = "If you want to disable it, you can change it from the app settings";
