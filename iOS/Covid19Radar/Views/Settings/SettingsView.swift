@@ -10,7 +10,9 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    @ObservedObject var viewModel = SettingsViewModel()
+    let version = AppSettings.shared.appVersion
+
+    @ObservedObject var viewModel = SettingsViewModel(exposureNotification: ExposureNotification(handler: MockExposureNotificationHandler()))
 
     // MARK: - Body
 
@@ -28,6 +30,7 @@ struct SettingsView: View {
         }
         .background(Color(UIColor.systemBackground))
         .navigationBarTitle("SettingsPageTitle", displayMode: .inline)
+        .alert(item: $viewModel.alertDialog, content: alert)
     }
 
     // MARK: - Rows
@@ -40,7 +43,7 @@ struct SettingsView: View {
 
                 Spacer()
 
-                Text(viewModel.version)
+                Text(version)
                     .foregroundColor(.secondary)
                     .defaultLabel()
             }
@@ -84,7 +87,7 @@ struct SettingsView: View {
 
                 Spacer()
 
-                SmallActionButton(label: "ButtonReset", action: viewModel.reset)
+                SmallActionButton(label: "ButtonReset", action: self.viewModel.reset)
                     .frame(width: 90)
             }
             .padding(.horizontal)

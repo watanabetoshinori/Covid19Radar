@@ -11,20 +11,41 @@ import Combine
 
 class HomeViewModel: ObservableObject {
 
-    var startDate = "2020/06/15"
+    var exposureNotification: ExposureNotification
 
-    var pastDate = "60"
+    var startDate = ""
 
-    var exposureSummaryCount: Int = LocalStore.shared.exposureSummaries.count
+    var pastDate = ""
+
+    var exposureCount: Int = UserData.shared.exposureInformation.count
 
     private var cancellables = [AnyCancellable]()
 
-    init() {
-        let notification = Notification.Name(rawValue: "LocalStoreExposureSummariesDidChange")
-        NotificationCenter.default.publisher(for: notification).sink { _ in
-            self.exposureSummaryCount = LocalStore.shared.exposureSummaries.count
+    init(exposureNotification: ExposureNotification) {
+        self.exposureNotification = exposureNotification
+
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        startDate = formatter.string(from: UserData.shared.startDateTime)
+
+        let daySpan = Calendar.current.dateComponents([.day], from: UserData.shared.startDateTime, to: Date()).day ?? 0
+        pastDate = String(describing: daySpan)
+
+        NotificationCenter.default.publisher(for: .init(rawValue: "LocalStoreExposureInformationDidChange")).sink { _ in
+            self.exposureCount = UserData.shared.exposureInformation.count
         }
         .store(in: &cancellables)
+    }
+
+    func appear() {
+        exposureNotification.start { error in
+            if let error = error {
+                print(error)
+                return
+            }
+
+            self.exposureNotification.updateKeysFromServer(completionHandler: { _ in })
+        }
     }
 
 }

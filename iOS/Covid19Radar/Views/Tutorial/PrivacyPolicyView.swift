@@ -14,8 +14,6 @@ struct PrivacyPolicyView: View {
 
     @ObservedObject private var webViewModel = WebViewModel()
 
-    @ObservedObject var viewModel = PrivacyPolicyViewModel()
-
     @State var isPresented = false
 
     // MARK: - Body
@@ -35,7 +33,11 @@ struct PrivacyPolicyView: View {
 
                 Spacer()
 
-                LargeActionButton(label: "ButtonAgree", action: self.viewModel.agree)
+                LargeActionButton(label: "ButtonAgree") {
+                    withAnimation {
+                        self.isPresented = true
+                    }
+                }
             }
             .padding(.vertical)
             .padding(.horizontal, 24)
@@ -44,11 +46,6 @@ struct PrivacyPolicyView: View {
         .background(Color(UIColor.systemBackground))
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarHidden(true)
-        .onReceive(self.viewModel.$isPresented, perform: { (newValue) in
-            withAnimation {
-                self.isPresented = newValue
-            }
-        })
         .modal(isPresented: $isPresented, destination: Tutorial4View())
     }
 

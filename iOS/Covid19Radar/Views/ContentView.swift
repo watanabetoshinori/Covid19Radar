@@ -8,6 +8,21 @@
 
 import SwiftUI
 
+struct ActivityIndicatorView: UIViewRepresentable {
+
+    func makeUIView(context: Context) -> UIActivityIndicatorView {
+        let uiView = UIActivityIndicatorView()
+        uiView.style = .large
+        uiView.color = .white
+        return uiView
+    }
+
+    func updateUIView(_ uiView: UIActivityIndicatorView, context: Context) {
+        uiView.startAnimating()
+    }
+
+}
+
 struct ContentView: View {
 
     @ObservedObject var viewModel = ContentViewModel()
@@ -25,6 +40,21 @@ struct ContentView: View {
             } else {
                 Tutorial1View()
                     .transition(.move(edge: .bottom))
+            }
+
+            if self.viewModel.showLoading {
+                HStack(alignment: .center) {
+                    VStack(alignment: .center, spacing: 8) {
+                        ActivityIndicatorView()
+                            .padding(.horizontal)
+                        Text("LoadingTextRegistering")
+                            .foregroundColor(.white)
+                            .defaultLabel()
+                    }
+                    .padding()
+                    .background(Color(.systemGray).opacity(0.8))
+                    .cornerRadius(8)
+                }
             }
         }
     }

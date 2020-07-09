@@ -34,7 +34,7 @@ struct Tutorial6View: View {
 
                     LargeActionButton(label: "TutorialPage6ButtonText1") {
                         withAnimation {
-                            LocalStore.shared.isOnboarded = true
+                            UserData.shared.isOnboarded = true
                         }
                     }
 

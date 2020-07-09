@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LicenseView: View {
 
-    @ObservedObject var viewModel = LicenseViewModel()
+    let url = AppSettings.shared.licenseUrl
 
     @ObservedObject private var webViewModel = WebViewModel()
 
@@ -18,7 +18,7 @@ struct LicenseView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            WebView(url: self.viewModel.licenseURL, viewModel: self.webViewModel)
+            WebView(url: self.url, viewModel: self.webViewModel)
         }
         .background(Color(UIColor.systemBackground))
         .navigationBarTitle("TitleLicenseAgreement", displayMode: .inline)

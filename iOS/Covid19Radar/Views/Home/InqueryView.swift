@@ -34,7 +34,9 @@ struct InqueryView: View {
         Group {
             VStack(alignment: .leading, spacing: 8) {
                 Button("appsupport@cov19.mhlw.go.jp") {
-
+                    self.openURL("mailto:appsupport@cov19.mhlw.go.jp"
+                        + "?subject=" + NSLocalizedString("InqueryMailSubject", comment: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+                        + "&body=" + NSLocalizedString("InqueryMailBody", comment: "").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)
                 }
                 .foregroundColor(.accentColor)
                 .font(.body)
@@ -57,7 +59,7 @@ struct InqueryView: View {
                     .defaultLabel()
 
                 Button("https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/cocoa_00138.html") {
-
+                    self.openURL("https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/cocoa_00138.html")
                 }
                 .foregroundColor(.accentColor)
                 .font(.body)
@@ -77,7 +79,7 @@ struct InqueryView: View {
                     .defaultLabel()
 
                 Button("https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/covid19_qa_kanrenkigyou_00009.html") {
-
+                    self.openURL("https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/covid19_qa_kanrenkigyou_00009.html")
                 }
                 .foregroundColor(.accentColor)
                 .font(.body)

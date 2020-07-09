@@ -15,16 +15,30 @@ class ContentViewModel: ObservableObject {
 
     @Published var selectedIndex = 0
 
-    @Published var isOnboarded = LocalStore.shared.isOnboarded
+    @Published var isOnboarded = UserData.shared.isOnboarded
+
+    @Published var showLoading = false
 
     private var cancellables = [AnyCancellable]()
 
     init() {
-        let notification = Notification.Name(rawValue: "LocalStoreIsOnboardedDidChange")
-        NotificationCenter.default.publisher(for: notification).sink { _ in
-            self.isOnboarded = LocalStore.shared.isOnboarded
+        NotificationCenter.default.publisher(for: .init(rawValue: "LocalStoreIsOnboardedDidChange")).sink { _ in
+            self.isOnboarded = UserData.shared.isOnboarded
         }
         .store(in: &cancellables)
+
+        LoadingDialog.shared.showLoadingPublisher
+            .sink { _ in
+                self.showLoading = true
+            }
+            .store(in: &cancellables)
+
+        LoadingDialog.shared.hideLoadingPublisher
+            .receive(on: RunLoop.main)
+            .sink { _ in
+                self.showLoading = false
+            }
+            .store(in: &cancellables)
     }
 
 }

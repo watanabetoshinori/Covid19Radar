@@ -12,9 +12,9 @@ struct Tutorial3View: View {
 
     let url = NSLocalizedString("UrlTermOfUse", comment: "")
 
-    @ObservedObject private var webViewModel = WebViewModel()
+    @ObservedObject var viewModel = Tutorial3ViewModel(handler: MockExposureNotificationHandler())
 
-    @ObservedObject var viewModel = Tutorial3ViewModel()
+    @ObservedObject private var webViewModel = WebViewModel()
 
     @State var isPresented = false
 
@@ -49,6 +49,7 @@ struct Tutorial3View: View {
                 self.isPresented = newValue
             }
         })
+        .alert(item: $viewModel.alertDialog, content: alert)
         .modal(isPresented: self.$isPresented, destination: PrivacyPolicyView())
     }
 

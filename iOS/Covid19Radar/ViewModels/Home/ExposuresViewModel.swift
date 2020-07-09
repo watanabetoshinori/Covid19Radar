@@ -10,6 +10,16 @@ import Foundation
 
 class ExposuresViewModel: ObservableObject {
 
-    var exposureSummaries = LocalStore.shared.exposureSummaries
+    var exposureSummaries = [ExposureSummary]()
+
+    init() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+
+        exposureSummaries = Dictionary(grouping: UserData.shared.exposureInformation, by: { $0.timeStamp })
+            .map { item in
+                ExposureSummary(exposureDate: formatter.string(from: item.key), exposureCount: String(item.value.count))
+            }
+    }
 
 }

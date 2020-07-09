@@ -10,9 +10,11 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @ObservedObject var viewModel = HomeViewModel()
+    @ObservedObject var viewModel = HomeViewModel(exposureNotification: ExposureNotification(handler: MockExposureNotificationHandler()))
 
     @State var isPresented = false
+
+    @State var isPresentedActionSheet = false
 
     @State private var selectedIndex = 0
 
@@ -41,6 +43,8 @@ struct HomeView: View {
         .edgesIgnoringSafeArea(.bottom)
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarTitleView(Image("HeaderLogo"))
+        .onAppear(perform: self.viewModel.appear)
+        .sheet(isPresented: self.$isPresentedActionSheet) { ActivityView(activityItems: [URL(string: AppSettings.shared.appStoreUrl)]) }
     }
 
     // MARK: - Cards
@@ -103,8 +107,7 @@ struct HomeView: View {
             }
 
             ActionButton(label: "HomePageDescription5") {
-                withAnimation {
-                }
+                self.isPresentedActionSheet = true
             }
         }
         .padding()
@@ -121,7 +124,7 @@ struct HomeView: View {
                 SubmitConsentView(isParentPresented: self.$isPresented)
             )
         default:
-            if viewModel.exposureSummaryCount == 0 {
+            if viewModel.exposureCount == 0 {
                 return AnyView(
                     NotContactView()
                 )
@@ -137,6 +140,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(viewModel: .init(exposureNotification: ExposureNotification(handler: MockExposureNotificationHandler())), isPresented: true)
     }
 }

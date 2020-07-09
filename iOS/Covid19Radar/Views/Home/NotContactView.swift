@@ -10,6 +10,8 @@ import SwiftUI
 
 struct NotContactView: View {
 
+    @State var isPresentedActionSheet = false
+
     // MARK: - Body
 
     var body: some View {
@@ -38,6 +40,9 @@ struct NotContactView: View {
         }
         .background(Color(UIColor.systemBackground))
         .navigationBarTitle("NotContactPageTitle", displayMode: .inline)
+        .sheet(isPresented: self.$isPresentedActionSheet) {
+            ActivityView(activityItems: [URL(string: AppSettings.shared.appStoreUrl)])
+        }
     }
 
 }

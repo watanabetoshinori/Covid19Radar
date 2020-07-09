@@ -25,7 +25,7 @@ struct ContactedNotifyView: View {
                             Image("InfoMark")
 
                             (Text("ContactedNotifyPageMainText")
-                                + Text("\n\(self.viewModel.exposureSummaryCount)")
+                                + Text("\n\(self.viewModel.exposureCount)")
                                 + Text("ContactedNotifyPageCountText"))
                                 .defaultTitle()
                         }
@@ -35,12 +35,10 @@ struct ContactedNotifyView: View {
                             .defaultLabel()
 
                         ActionButton(label: "ContactedNotifyPageButton2", symbol: "square.and.pencil") {
-
+                            self.openURL("UrlContactedForm")
                         }
 
-                        ActionButton(label: "ContactedNotifyPageButton3", symbol: "phone.fill") {
-
-                        }
+                        ActionButton(label: "ContactedNotifyPageButton3", symbol: "phone.fill", action: self.viewModel.contactByPhone)
 
                         Text("ContactedNotifyPageDescription2")
                             .defaultLabel()

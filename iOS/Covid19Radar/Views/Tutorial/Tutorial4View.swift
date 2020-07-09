@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Tutorial4View: View {
 
-    @ObservedObject var viewModel = Tutorial4ViewModel()
+    @ObservedObject var viewModel = Tutorial4ViewModel(exposureNotification: ExposureNotification(handler: MockExposureNotificationHandler()))
 
     @State var isPresented = false
 

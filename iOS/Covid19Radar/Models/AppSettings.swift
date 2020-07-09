@@ -10,6 +10,16 @@ import Foundation
 
 struct AppSettings: Codable {
 
+    static var shared: AppSettings = {
+        guard let fileURL = Bundle.main.url(forResource: "settings", withExtension: "json"),
+            let data = try? Data(contentsOf: fileURL),
+            let settings = try? JSONDecoder().decode(AppSettings.self, from: data) else {
+            fatalError()
+        }
+
+        return settings
+    }()
+
     var appVersion: String
 
     var apiSecret: String
@@ -20,15 +30,11 @@ struct AppSettings: Codable {
 
     var blobStorageContainerName: String
 
-    var androidSafetyNetApiKey: String
-
     var cdnUrlBase: String
 
     var licenseUrl: String
 
     var appStoreUrl: String
-
-    var googlePlayUrl: String
 
     var supportEmail: String
 

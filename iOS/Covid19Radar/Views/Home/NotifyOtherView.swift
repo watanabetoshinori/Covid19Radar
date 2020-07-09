@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NotifyOtherView: View {
 
-    @ObservedObject var viewModel = NotifyOtherViewModel()
+    @ObservedObject var viewModel = NotifyOtherViewModel(exposureNotification: ExposureNotification(handler: MockExposureNotificationHandler()))
 
     @Binding var isParentPresented: Bool
 
@@ -77,6 +77,7 @@ struct NotifyOtherView: View {
         .onTapGesture(perform: {
             UIApplication.shared.windows.first?.endEditing(true)
         })
+        .alert(item: $viewModel.alertDialog, content: alert)
     }
 
     private func keyboardWillChange(notification: Notification) {

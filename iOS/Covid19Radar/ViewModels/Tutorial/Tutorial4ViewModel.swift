@@ -10,18 +10,28 @@ import Foundation
 
 class Tutorial4ViewModel: ObservableObject {
 
+    var exposureNotification: ExposureNotification
+
     @Published var isPresented = false
 
+    init(exposureNotification: ExposureNotification) {
+        self.exposureNotification = exposureNotification
+    }
+
     func enable() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.isPresented = true
+        exposureNotification.isEnabled { enabled in
+            if enabled {
+                self.isPresented = true
+            } else {
+                self.exposureNotification.start { _ in
+                    self.isPresented = true
+                }
+            }
         }
     }
 
     func disable() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.isPresented = true
-        }
+        self.isPresented = true
     }
 
 }

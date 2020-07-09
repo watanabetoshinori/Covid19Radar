@@ -10,24 +10,33 @@ import Foundation
 
 class DeveloperViewModel: ObservableObject {
 
-    @Published var isOnboarded = LocalStore.shared.isOnboarded
+    @Published var isOnboarded = UserData.shared.isOnboarded
 
-    func simulateExposureSummary() {
-        let exposure = ExposureSummary(date: Date() - TimeInterval.random(in: 1...4) * 24 * 60 * 60,
-                                       count: Int.random(in: 1...4))
-        LocalStore.shared.exposureSummaries.append(exposure)
+    func simulateExposure() {
+        let info = UserExposureInfo(timeStamp: Date() - TimeInterval.random(in: 1...13) * 24 * 60 * 60,
+                                    duration: Int.random(in: 15...60) * 60,
+                                    attenuationValue: Int.random(in: 50...100),
+                                    totalRiskScore: Int.random(in: 1...10),
+                                    transmissionRiskLevel: UserExposureInfo.UserRiskLevel(rawValue: Int.random(in: 1...7))!)
+
+        UserData.shared.exposureInformation.append(info)
+
+        let summary = UserExposureSummary(daysSinceLastExposure: 0,
+                                         matchedKeyCount: 1,
+                                         highestRiskScore: info.totalRiskScore,
+                                         attenuationDurations: [info.duration],
+                                         summationRiskScore: info.totalRiskScore)
+
+        UserData.shared.exposureSumary = summary
     }
 
     func resetOnboarding() {
-        LocalStore.shared.isOnboarded = false
+        UserData.shared.isOnboarded = false
     }
 
-    func resetLocalExposureSummaries() {
-        LocalStore.shared.exposureSummaries = []
-    }
-
-    func exit() {
-        abort()
+    func resetLocalExposures() {
+        UserData.shared.exposureSumary = nil
+        UserData.shared.exposureInformation = []
     }
 
 }

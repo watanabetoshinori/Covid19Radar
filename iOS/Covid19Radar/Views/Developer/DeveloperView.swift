@@ -16,10 +16,9 @@ struct DeveloperView: View {
 
     var body: some View {
         List {
+            Button(action: self.viewModel.simulateExposure) { Text("Simulate Exposure") }
             Button(action: self.viewModel.resetOnboarding) { Text("Reset Onboarding") }
-            Button(action: self.viewModel.simulateExposureSummary) { Text("Simulate ExposureSummary") }
-            Button(action: self.viewModel.resetLocalExposureSummaries) { Text("Reset Local ExposureSummaries") }
-            Button(action: self.viewModel.exit) { Text("Exit App") }
+            Button(action: self.viewModel.resetLocalExposures) { Text("Reset Exposure") }
         }
         .background(Color(UIColor.systemBackground))
         .navigationBarTitle("Developer", displayMode: .inline)

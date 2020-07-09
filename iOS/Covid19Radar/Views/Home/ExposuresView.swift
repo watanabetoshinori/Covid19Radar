@@ -27,8 +27,8 @@ struct ExposuresView: View {
                         Divider()
                     }
 
-                    ForEach(self.viewModel.exposureSummaries, id: \.id) { exposure in
-                        ExposureRow(date: exposure.dateString, count: exposure.count)
+                    ForEach(self.viewModel.exposureSummaries, id: \.exposureDate) { summary in
+                        ExposureRow(date: summary.exposureDate, count: summary.exposureCount)
                     }
                 }
                 .padding(.top, 8)
@@ -45,7 +45,7 @@ struct ExposureRow: View {
 
     var date: String
 
-    var count: Int
+    var count: String
 
     var body: some View {
         Group {
@@ -55,7 +55,7 @@ struct ExposureRow: View {
 
                 Spacer()
 
-                (Text("\(count)")
+                (Text(count)
                     + Text("件"))
                     .defaultLabel()
             }

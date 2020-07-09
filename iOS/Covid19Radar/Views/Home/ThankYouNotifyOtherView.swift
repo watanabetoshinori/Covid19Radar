@@ -12,6 +12,8 @@ struct ThankYouNotifyOtherView: View {
 
     @Binding var isParentPresented: Bool
 
+    @State var isPresentedActionSheet = false
+
     // MARK: - Body
 
     var body: some View {
@@ -39,8 +41,7 @@ struct ThankYouNotifyOtherView: View {
                     Spacer()
 
                     LargeActionButton(label: "NotContactPageButtonText") {
-                        withAnimation {
-                        }
+                        self.isPresentedActionSheet = true
                     }
                 }
                 .padding(.vertical)
@@ -52,6 +53,9 @@ struct ThankYouNotifyOtherView: View {
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(trailing: homeButton)
+        .sheet(isPresented: self.$isPresentedActionSheet) {
+            ActivityView(activityItems: [URL(string: AppSettings.shared.appStoreUrl)])
+        }
     }
 
     // MARK: - Button
